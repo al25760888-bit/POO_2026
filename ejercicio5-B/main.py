@@ -8,7 +8,7 @@ from Pico import Pico
 
 
 if __name__ == "__main__":
-    # 1. Prueba básica
+    
     mis_herramientas = [
         Pico("diamante", 5),
         Espada("hierro", 3),
@@ -23,7 +23,7 @@ if __name__ == "__main__":
         h.estado()
         print("-" * 30)
 
-    # 2. Prueba de durabilidad extrema (Tarea 2)
+    
     print("\n--- 🧨 PROBANDO DURABILIDAD HASTA ROMPER ---")
     pala_vieja = Pala("madera", 3)
     
@@ -31,7 +31,7 @@ if __name__ == "__main__":
         print(pala_vieja.usar("Tierra"))
         pala_vieja.estado()
     
-    # Intento de uso final
+
     print(pala_vieja.usar("Tierra"))
     
 """if __name__ == "__main__":
