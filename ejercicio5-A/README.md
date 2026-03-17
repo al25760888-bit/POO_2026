@@ -7,10 +7,11 @@
 * **Carrera:** Ingeniería en Sistemas Computacionales 
 * **Materia:** Programación Orientada a Objetos 
 * **Temas:** Ejercicio 5A Clase Mod
-* **Grupo:** 2SS 
+* **Grupo:** 2SS
+* **Matricula:** 25760888 
 
 ### **Participantes**
-* [cite_start]**Alumno:** Gómez Ramírez Héctor Adán [cite: 10]
+* **Alumno:** Gómez Ramírez Héctor Adán
 
 
 ### **Ubicación**
