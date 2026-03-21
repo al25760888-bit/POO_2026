@@ -29,7 +29,7 @@ Aquí encontrarás soluciones a problemas comunes como:
 
 ## 🛠️ Tecnologías Utilizadas
 
-* **Lenguaje:** Python / Java / C++ *(Borra los que no apliquen)*
+* **Lenguaje:** Python 
 * **Herramientas:** Git, GitHub, VS Code.
 
 ---
@@ -44,8 +44,7 @@ Actualmente me desempeño como **Técnico SMT** y estoy enfocado en profundizar 
 
 Si tienes alguna sugerencia o quieres conectar conmigo, puedes encontrarme en:
 
-* **LinkedIn:** [Tu Enlace Aquí]
-* **Portafolio:** [Tu Enlace Aquí]
+* **Gmail** al25760888@ite.edu.mx
 
----
-*Hecho con 💚 por Héctor Gómez*
+
+
