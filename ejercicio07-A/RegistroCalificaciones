@@ -1,0 +1,48 @@
+# 1. Definición de la excepción personalizada
+class CalificacionFueraDeRangoError(Exception):
+    """Excepción lanzada cuando la calificación no está entre 0 y 100."""
+    def __init__(self, valor):
+        self.valor = valor
+        self.mensaje = f"Error: La calificación {valor} no es válida. Debe estar entre 0 y 100."
+        super().__init__(self.mensaje)
+
+# 2. Función para pedir enteros de forma segura
+def pedir_entero(mensaje):
+    while True:
+        try:
+            return int(input(mensaje))
+        except ValueError:
+            print("Entrada no válida. Por favor, introduce un número entero.")
+
+# 3. Lógica principal del registro
+def registrar_estudiantes():
+    estudiantes = []
+    
+    print("--- Registro de Calificaciones ---")
+    
+    while True:
+        nombre = input("\nNombre del estudiante (o 'salir' para terminar): ")
+        if nombre.lower() == 'salir':
+            break
+            
+        calificacion = pedir_entero(f"Introduce la calificación de {nombre}: ")
+        
+        try:
+            # Validación de rango
+            if calificacion < 0 or calificacion > 100:
+                raise CalificacionFueraDeRangoError(calificacion)
+            
+            # Si pasa la validación, guardamos en la lista temporal
+            estudiantes.append({"nombre": nombre, "nota": calificacion})
+            print(f"Registro exitoso: {nombre} - {calificacion}")
+            
+        except CalificacionFueraDeRangoError as e:
+            print(e.mensaje)
+
+    # Resumen de la sesión
+    print("\n--- Sesión finalizada ---")
+    for est in estudiantes:
+        print(f"Estudiante: {est['nombre']} | Nota: {est['nota']}")
+
+if __name__ == "__main__":
+    registrar_estudiantes()
