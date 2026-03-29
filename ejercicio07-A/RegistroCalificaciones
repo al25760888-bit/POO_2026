@@ -1,48 +1,63 @@
-# 1. Definición de la excepción personalizada
+# 1. Definición de excepciones personalizadas
 class CalificacionFueraDeRangoError(Exception):
-    """Excepción lanzada cuando la calificación no está entre 0 y 100."""
-    def __init__(self, valor):
-        self.valor = valor
-        self.mensaje = f"Error: La calificación {valor} no es válida. Debe estar entre 0 y 100."
-        super().__init__(self.mensaje)
+    """Lanzada cuando la nota no está entre 0 y 100."""
+    pass
 
-# 2. Función para pedir enteros de forma segura
+class NombreInvalidoError(Exception):
+    """Lanzada cuando el nombre contiene números."""
+    pass
+
 def pedir_entero(mensaje):
+    """Asegura que la entrada sea un número entero."""
     while True:
         try:
             return int(input(mensaje))
         except ValueError:
-            print("Entrada no válida. Por favor, introduce un número entero.")
+            print("❌ Error: Debes ingresar un número entero para la calificación.")
 
-# 3. Lógica principal del registro
-def registrar_estudiantes():
-    estudiantes = []
-    
-    print("--- Registro de Calificaciones ---")
-    
-    while True:
-        nombre = input("\nNombre del estudiante (o 'salir' para terminar): ")
-        if nombre.lower() == 'salir':
-            break
-            
-        calificacion = pedir_entero(f"Introduce la calificación de {nombre}: ")
+# --- Programa Principal ---
+print("=" * 50)
+print("SISTEMA DE REGISTRO CON VALIDACIÓN DOBLE")
+print("=" * 50)
+
+total_registros = 0
+
+while True:
+    print(f"\n--- Registro #{total_registros + 1} ---")
+    nombre_input = input("Nombre del estudiante (o 'salir'): ").strip()
+
+    if nombre_input.lower() == 'salir':
+        break
+
+    try:
+        # Validación del Nombre: comprobamos si hay dígitos
+        if any(char.isdigit() for char in nombre_input):
+            raise NombreInvalidoError(f"El nombre '{nombre_input}' no puede contener números.")
         
-        try:
-            # Validación de rango
-            if calificacion < 0 or calificacion > 100:
-                raise CalificacionFueraDeRangoError(calificacion)
-            
-            # Si pasa la validación, guardamos en la lista temporal
-            estudiantes.append({"nombre": nombre, "nota": calificacion})
-            print(f"Registro exitoso: {nombre} - {calificacion}")
-            
-        except CalificacionFueraDeRangoError as e:
-            print(e.mensaje)
+        if not nombre_input:
+            raise NombreInvalidoError("El nombre no puede estar vacío.")
 
-    # Resumen de la sesión
-    print("\n--- Sesión finalizada ---")
-    for est in estudiantes:
-        print(f"Estudiante: {est['nombre']} | Nota: {est['nota']}")
+        # Validación de la Calificación
+        nota = pedir_entero(f"Calificación de {nombre_input}: ")
+        
+        if nota < 0 or nota > 100:
+            raise CalificacionFueraDeRangoError(f"La nota {nota} está fuera del rango 0-100.")
 
-if __name__ == "__main__":
-    registrar_estudiantes()
+    except NombreInvalidoError as e:
+        print(f"🚫 Error en Nombre: {e}")
+    
+    except CalificacionFueraDeRangoError as e:
+        print(f"🚫 Error en Nota: {e}")
+
+    else:
+        # Si todo salió bien, guardamos el registro (simulado)
+        print(f"✅ ¡Éxito! {nombre_input} ha sido registrado.")
+        total_registros += 1
+
+    finally:
+        # Esto se muestra SIEMPRE al final de cada intento
+        print(f"INFO: Estudiantes registrados en esta sesión: {total_registros}")
+
+print("\n" + "=" * 50)
+print("FIN DEL PROGRAMA. ¡Buen día!")
+print("=" * 50)
