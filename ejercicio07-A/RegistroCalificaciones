@@ -13,7 +13,7 @@ def pedir_entero(mensaje):
         try:
             return int(input(mensaje))
         except ValueError:
-            print("❌ Error: Debes ingresar un número entero para la calificación.")
+            print(" Error: Debes ingresar un número entero para la calificación.")
 
 # --- Programa Principal ---
 print("=" * 50)
@@ -44,14 +44,14 @@ while True:
             raise CalificacionFueraDeRangoError(f"La nota {nota} está fuera del rango 0-100.")
 
     except NombreInvalidoError as e:
-        print(f"🚫 Error en Nombre: {e}")
+        print(f" Error en Nombre: {e}")
     
     except CalificacionFueraDeRangoError as e:
-        print(f"🚫 Error en Nota: {e}")
+        print(f" Error en Nota: {e}")
 
     else:
         # Si todo salió bien, guardamos el registro (simulado)
-        print(f"✅ ¡Éxito! {nombre_input} ha sido registrado.")
+        print(f" ¡Éxito! {nombre_input} ha sido registrado.")
         total_registros += 1
 
     finally:
